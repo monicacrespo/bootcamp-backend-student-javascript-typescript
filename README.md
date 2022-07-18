@@ -1,1 +1,0 @@
-# bootcamp-backend-student-javascript-typescript
