@@ -375,7 +375,8 @@ console.log(result);
 ]
 ```
 ## Exercise 2
-Implement a function replaceAt that accepts as first argument an array, as second an index and as third argument a value and replace the element in the array in the index provided. The input array must not be mutted, that means, you need to create a new array without modifying the original one. Use spread operator, and slice to get it.
+Implement a function replaceAt that accepts as first argument an array, as second an index and as third argument a value and replace the element in the array in the index provided. 
+The input array must not be mutted, that means, you need to create a new array without modifying the original one. Use spread operator, and slice to get it.
 
 ```
 const elements = ["lorem", "ipsum", "dolor", "sit", "amet"];
@@ -391,9 +392,25 @@ console.log(result === elements); // false
 console.log(result); // ['lorem', 'ipsum', 'furor', 'sit', 'amet'];
 ```
 
-Solution
+Solution using spread syntax
 ```
-
+const replaceAt = (arr, index, newElement) => {
+    const copy = [...arr]; 
+    if (index !== -1) {
+        copy[index] = newElement;
+    }
+    return copy;
+};
+```
+Solution using slice method 
+```
+const replaceAt = (arr, index, newElement) => {    
+    const copy = arr.slice();
+    if (index !== -1) {       
+        copy[index] = newElement;
+    }
+    return copy;
+};
 ```
 ## Exercise 3
 Crea una función que reciba una colección de objetos y un año. Dicha función deberá de mostrar los nombres de las tres personas con el ranking más alto del año.
