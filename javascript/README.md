@@ -413,7 +413,7 @@ const replaceAt = (arr, index, newElement) => {
 };
 ```
 ## Exercise 3
-Crea una función que reciba una colección de objetos y un año. Dicha función deberá de mostrar los nombres de las tres personas con el ranking más alto del año.
+Creates a function that receives an object's collection and a year. That function should display the names of the three people with the highest ranking of the year.
 
 ```
 const data = [
@@ -462,6 +462,16 @@ console.log(winnerByYear(data, 2003)) // [ 'Brianna', 'Francene', 'Everett' ]
 console.log(winnerByYear(data, 2004)) // []
 ```
 
+Solution
+```
+ const winnerByYear = (arr, year) => {
+    return arr.filter(o => o.year === year).sort(function(a , b) {
+	  // sorting by highest ranking
+      return b.ranking - a.ranking;
+    }).slice(0,3).map(o => o.name);
+  
+ };
+```
 ## Exercise 4
 Crear funcion para normalizar una colección de objetos a un objeto, de tal manera que devuelva un objeto que tenga como claves las ids de los objetos y como valores los objetos en sí pero sin la id.
 
