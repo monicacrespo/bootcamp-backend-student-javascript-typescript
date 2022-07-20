@@ -473,7 +473,9 @@ Solution
  };
 ```
 ## Exercise 4
-Crear funcion para normalizar una colección de objetos a un objeto, de tal manera que devuelva un objeto que tenga como claves las ids de los objetos y como valores los objetos en sí pero sin la id.
+Create a function to normalize an object's collection to an object, so that the return object has:
+* the id value as a key and 
+* the object without the id as its value.
 
 ```
 const collection = [
@@ -568,7 +570,7 @@ console.log(result);
 
 ```
 ```
-// Resultado:
+// Result:
 {
   "f0b6930c-331a-43e1-80db-e6c46ed552aa": {
     nationality: "Barbadians",
@@ -588,10 +590,36 @@ console.log(result);
 }
 ```
 
-Optional: Si tu solución previa utiliza bucles, crea una versión sin bucles, basándote en los métodos funcionales de Array.prototype.
+Solution
+```
+const normalize = (arr) => {
+  const result = arr.map(function (a) {
+    var o = {};
+
+    // Using destructuring and rest to remove the id from the object "a" in an immutable way.
+    // The original object "a" remains intact.
+    const { id, ...country } = a;
+
+    o[a.id] = country;
+    
+    // Note we could have used delete a.id; but once the key of the return object (id value) has been assigned.
+    // Note that using delete mutates the original object.
+    //delete a.id;
+    
+    return o;
+});
+return result;
+};
+```
+Optional: if you solution uses loops, creates a solution without them, based on Array.prototype functionals methods
 
 ## Exercise 5
-Implementa una función para eliminar valores falsys de una estructura de datos. Si el argumento es un objeto, deberá eliminar sus propiedades falsys. Si el argumento es un array, deberá eliminar los elementos falsys. Si el argumento es un objeto o un array no deberán ser mutados. Siempre deberá de crear una estructura nueva. Si no es ni un objeto ni un array deberá de devolver dicho argumento.
+Implement a function to remove falsys values from a data structure.
+If the argument is an object, it should remove its falsys properties. 
+If the argument is an array, it should remove its falsys elements. 
+If the argument is an array or an object, these should no be mutated.
+It always should create a new structure. 
+If it is not an object or an array it should return the argument itself.
 
 ```
 const elements = [0, 1, false, 2, "", 3];
@@ -606,3 +634,4 @@ console.log(compact([0, 1, false, 2, "", 3])); // [1, 2, 3]
 console.log(compact({})); // {}
 console.log(compact({ price: 0, name: "cloud", altitude: NaN, taste: undefined, isAlive: false })); // {name: "cloud"}
 ```
+https://github.com/Lemoncode/bootcamp-backend/search?q=falsy
