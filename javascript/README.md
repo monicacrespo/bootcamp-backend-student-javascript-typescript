@@ -615,11 +615,11 @@ Optional: if you solution uses loops, creates a solution without them, based on 
 
 ## Exercise 5
 Implement a function to remove falsys values from a data structure.
-If the argument is an object, it should remove its falsys properties. 
-If the argument is an array, it should remove its falsys elements. 
-If the argument is an array or an object, these should no be mutated.
-It always should create a new structure. 
-If it is not an object or an array it should return the argument itself.
+* If the argument is an object, it should remove its falsys properties. 
+* If the argument is an array, it should remove its falsys elements. 
+* If the argument is an array or an object, these should no be mutated.
+* It always should create a new structure. 
+* If it is not an object or an array it should return the argument itself.
 
 ```
 const elements = [0, 1, false, 2, "", 3];
@@ -634,4 +634,35 @@ console.log(compact([0, 1, false, 2, "", 3])); // [1, 2, 3]
 console.log(compact({})); // {}
 console.log(compact({ price: 0, name: "cloud", altitude: NaN, taste: undefined, isAlive: false })); // {name: "cloud"}
 ```
-https://github.com/Lemoncode/bootcamp-backend/search?q=falsy
+```
+// Solution
+const removeFalsyElement = object => {
+   const newObject = {};
+   Object.keys(object).forEach(key => {
+     if (object[key]) {
+       newObject[key] = object[key];
+     }
+   });
+   return newObject;
+ };
+
+// Note: There are only six falsy values in JavaScript: undefined , null , NaN , 0 , "", and false.
+const compact = (arg) => {
+   if (Array.isArray(arg))
+   {
+      const [ ...newArray ] = arg;
+      // filter returns a new array with the elements that pass the test.
+	  // If no elements pass the test, an empty array will be returned.
+	   return result = newArray.filter(Boolean);
+   }
+   
+   // Note that an array is an "object" type as well. 
+   // This is why the first check is to find out whether the argument is an array or not.
+   if (typeof arg === 'object' && arg !== null)
+   {
+      return removeFalsyElement(arg);
+   }
+   
+   return arg;
+};
+```
